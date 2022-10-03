@@ -1,22 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ru.yandex.praktikum.MainTests
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 96.942 s <<< FAILURE! - in ru.yandex.praktikum.MainTests
-shouldBeSauceMenu(ru.yandex.praktikum.MainTests)  Time elapsed: 28.962 s  <<< FAILURE!
-com.codeborne.selenide.ex.InvalidStateException: 
-Invalid element state: element click intercepted: Element <span class="text text_type_main-default">...</span> is not clickable at point (363, 215). Other element would receive the click: <div class="Modal_modal_overlay__x2ZCr"></div>
-Screenshot: file:/Users/s.kulik/IdeaProjects/Diplom/Diplom_3/build/reports/tests/1663699587370.1.png
-Page source: file:/Users/s.kulik/IdeaProjects/Diplom/Diplom_3/build/reports/tests/1663699587370.1.html
-Timeout: 4 s.
-Caused by: ElementClickInterceptedException: element click intercepted: Element <span class="text text_type_main-default">...</span> is not clickable at point (363, 215). Other element would receive the click: <div class="Modal_modal_overlay__x2ZCr"></div>
-	at ru.yandex.praktikum.MainTests.shouldBeSauceMenu(MainTests.java:120)
-Caused by: org.openqa.selenium.ElementClickInterceptedException: 
-element click intercepted: Element <span class="text text_type_main-default">...</span> is not clickable at point (363, 215). Other element would receive the click: <div class="Modal_modal_overlay__x2ZCr"></div>
-  (Session info: chrome=105.0.5195.125)
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'mbp-skulik.local', ip: '192.168.0.100', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '12.1', java.version: '11.0.16.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: /var/folders/0c/v4cn1sp9499...}, goog:chromeOptions: {debuggerAddress: localhost:50957}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 40f686c83062ef580aa870901be6b207
-	at ru.yandex.praktikum.MainTests.shouldBeSauceMenu(MainTests.java:120)
-
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 57.709 s - in ru.yandex.praktikum.MainTests

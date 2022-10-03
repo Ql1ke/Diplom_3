@@ -7,9 +7,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class MainPage{
+public class MainPage {
 
-    @FindBy(how = How.XPATH, using = "//p[text()='Личный Кабинет']")
+    @FindBy(how = How.XPATH, using = "//*[@id=\"root\"]/div/header/nav/a/p")
     private SelenideElement personalAccountButton;
 
     @FindBy(how = How.XPATH, using = "//p[text()='Конструктор']")
@@ -24,19 +24,18 @@ public class MainPage{
     @FindBy(how = How.XPATH, using = "//*[text()='Соусы']")
     private SelenideElement sauceButton;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Соусы']")
+    @FindBy(how = How.XPATH, using = "//*[@id=\"root\"]/div/main/section[1]/div[1]/div[2]/span\n")
     private SelenideElement sauceChecker;
-
     @FindBy(how = How.XPATH, using = "//*[text()='Начинки']")
     private SelenideElement fillingButton;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Начинки']")
+    @FindBy(how = How.XPATH, using = "//*[@id=\"root\"]/div/main/section[1]/div[1]/div[3]/span\n")
     private SelenideElement fillingChecker;
 
     @FindBy(how = How.XPATH, using = "//button[text()='Войти в аккаунт']")
     private SelenideElement loginButton;
 
-    @FindBy(how = How.XPATH, using = "//*[text()='Выход']")
+    @FindBy(how = How.XPATH, using = "//*[@id=\"root\"]/div/main/div/nav/ul/li[3]/button")
     private SelenideElement logoutButton;
 
     @FindBy(how = How.XPATH, using = "//*[text()='В этом разделе вы можете изменить свои персональные данные']")
@@ -52,7 +51,7 @@ public class MainPage{
     private SelenideElement loginText;
 
     @Step("Open Page")
-    public void openPage(String url){
+    public void openPage(String url) {
         Selenide.open(url);
     }
 
@@ -92,23 +91,37 @@ public class MainPage{
     }
 
     @Step("Verify personal account")
-    public void checkPersonalAccount(){ accountPersonalText.shouldBe(Condition.visible); }
+    public void checkPersonalAccount() {
+        accountPersonalText.shouldBe(Condition.visible);
+    }
 
     @Step("Verify main page")
-    public void checkMainPage(){ createOrderButton.shouldBe(Condition.visible); }
+    public void checkMainPage() {
+        createOrderButton.shouldBe(Condition.visible);
+    }
 
     @Step("Click Logo Button")
-    public void clickLogo(){ siteLogo.click(); }
+    public void clickLogo() {
+        siteLogo.click();
+    }
 
     @Step("Verify logout")
-    public void checkLogout(){ loginText.shouldBe(Condition.visible); }
+    public void checkLogout() {
+        loginText.shouldBe(Condition.visible);
+    }
 
     @Step("Verify bun menu")
-    public void checkBun(){ bunChecker.shouldBe(Condition.visible); }
+    public void checkBun() {
+        bunChecker.shouldBe(Condition.visible);
+    }
 
     @Step("Verify sauce menu")
-    public void checkSauce(){ sauceChecker.shouldBe(Condition.visible); }
+    public void checkSauce() {
+        sauceChecker.shouldBe(Condition.visible);
+    }
 
     @Step("Verify filling menu")
-    public void checkFilling(){ fillingChecker.shouldBe(Condition.visible); }
+    public void checkFilling() {
+        fillingChecker.shouldBe(Condition.visible);
+    }
 }

@@ -6,9 +6,8 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import ru.yandex.praktikum.api.BaseClient;
 
-public class AuthPage extends BaseClient {
+public class AuthPage {
 
     @FindBy(how = How.XPATH, using = "//div[@class='input pr-6 pl-6 input_type_text input_size_default']/input")
     private SelenideElement emailInputAlreadyRegistered;
@@ -29,7 +28,7 @@ public class AuthPage extends BaseClient {
     private SelenideElement retrievePasswordButton;
 
     @Step("Open page")
-    public void openPage(String url){
+    public void openPage(String url) {
         Selenide.open(url);
     }
 
@@ -39,7 +38,9 @@ public class AuthPage extends BaseClient {
     }
 
     @Step("Set Password to input box")
-    public void setPasswordInputAlreadyRegisteredUser(String password) { passwordInputAlreadyRegistered.setValue(password); }
+    public void setPasswordInputAlreadyRegisteredUser(String password) {
+        passwordInputAlreadyRegistered.setValue(password);
+    }
 
     @Step("Click Sign In Button")
     public void clickSignInButton() {
@@ -47,7 +48,7 @@ public class AuthPage extends BaseClient {
     }
 
     @Step("Authorization Check")
-    public void checkAuth(){
+    public void checkAuth() {
         createOrderButton.shouldBe(Condition.visible);
     }
 

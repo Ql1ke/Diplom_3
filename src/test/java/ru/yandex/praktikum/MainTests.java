@@ -9,35 +9,36 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ru.yandex.praktikum.api.BaseClient;
-import ru.yandex.praktikum.model.Client;
+import ru.yandex.praktikum.model.UserData;
 import ru.yandex.praktikum.pageobjects.AuthPage;
 import ru.yandex.praktikum.pageobjects.MainPage;
 import ru.yandex.praktikum.pageobjects.RegistrationPage;
 
 import static com.codeborne.selenide.Selenide.close;
-import static com.codeborne.selenide.Selenide.page;
 
-public class MainTests extends BaseClient{
+public class MainTests {
 
     private RegistrationPage registrationPage;
     private AuthPage authPage;
     private MainPage mainPage;
-    private Client registrationCorrectData;
+    private UserData registrationCorrectData;
+
 
     @Step("Initialization of test data")
     @Before
-    public void createData(){
+    public void createData() {
         registrationPage = Selenide.page(RegistrationPage.class);
         authPage = Selenide.page(AuthPage.class);
         mainPage = Selenide.page(MainPage.class);
-        registrationCorrectData = new Client(RandomStringUtils.randomAlphabetic(10) + "@yandex.ru", RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphanumeric(10));
-        createClient(registrationCorrectData);
+        registrationCorrectData = new UserData(RandomStringUtils.randomAlphabetic(10) + "@yandex.ru", RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphanumeric(10));
+        BaseClient.createClient(registrationCorrectData);
     }
 
     @Step("Deleting test data after tests")
     @After
-    public void deleteClient(){
-        deleteClient(registrationCorrectData);
+    public void deleteData() {
+        BaseClient.deleteClient(registrationCorrectData);
+        BaseClient.deleteClient(registrationCorrectData);
         close();
     }
 
@@ -45,22 +46,22 @@ public class MainTests extends BaseClient{
     @Test
     @DisplayName("Click personal account button")
     @Description("Should redirect to personal account")
-    public void shouldRedirectToPersonalAccount(){
-       mainPage.openPage(BaseURL);
-       mainPage.clickPersonalAccountButton();
-       authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
-       authPage.setPasswordInputAlreadyRegisteredUser(registrationCorrectData.getPassword());
-       authPage.clickSignInButton();
-       mainPage.clickPersonalAccountButton();
-       mainPage.checkPersonalAccount();
+    public void shouldRedirectToPersonalAccount() {
+        mainPage.openPage(BaseClient.BASE_URL);
+        mainPage.clickPersonalAccountButton();
+        authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
+        authPage.setPasswordInputAlreadyRegisteredUser(registrationCorrectData.getPassword());
+        authPage.clickSignInButton();
+        mainPage.clickPersonalAccountButton();
+        mainPage.checkPersonalAccount();
     }
 
     @Step("Checking the home page")
     @Test
     @DisplayName("Constructor from personal account")
     @Description("Should be able to click Constructor-button from personal account")
-    public void shouldClickToConstructorFromPersonalAccount(){
-        mainPage.openPage(BaseURL);
+    public void shouldClickToConstructorFromPersonalAccount() {
+        mainPage.openPage(BaseClient.BASE_URL);
         mainPage.clickPersonalAccountButton();
         authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
         authPage.setPasswordInputAlreadyRegisteredUser(registrationCorrectData.getPassword());
@@ -74,8 +75,8 @@ public class MainTests extends BaseClient{
     @Test
     @DisplayName("Logo from personal account")
     @Description("Should be able to click Logo-button from personal account")
-    public void shouldClickToLogoFromPersonalAccount(){
-        mainPage.openPage(BaseURL);
+    public void shouldClickToLogoFromPersonalAccount() {
+        mainPage.openPage(BaseClient.BASE_URL);
         mainPage.clickPersonalAccountButton();
         authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
         authPage.setPasswordInputAlreadyRegisteredUser(registrationCorrectData.getPassword());
@@ -89,10 +90,11 @@ public class MainTests extends BaseClient{
     @Test
     @DisplayName("Check logout button")
     @Description("Should be able to logout from personal account")
-    public void shouldLogOutFromAccount(){
-        mainPage.openPage(BaseURL);
+    public void shouldLogOutFromAccount() {
+        mainPage.openPage(BaseClient.BASE_URL);
         mainPage.clickPersonalAccountButton();
         authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
+
         authPage.setPasswordInputAlreadyRegisteredUser(registrationCorrectData.getPassword());
         authPage.clickSignInButton();
         mainPage.clickPersonalAccountButton();
@@ -104,8 +106,8 @@ public class MainTests extends BaseClient{
     @Test
     @DisplayName("Check Bun button")
     @Description("Should scroll to bun-menu")
-    public void shouldBeBunMenu(){
-        mainPage.openPage(BaseURL);
+    public void shouldBeBunMenu() {
+        mainPage.openPage(BaseClient.BASE_URL);
         mainPage.clickSauceButton();
         mainPage.clickBunButton();
         mainPage.checkBun();
@@ -115,8 +117,8 @@ public class MainTests extends BaseClient{
     @Test
     @DisplayName("Check Sauce button")
     @Description("Should scroll to Sauce-menu")
-    public void shouldBeSauceMenu(){
-        mainPage.openPage(BaseURL);
+    public void shouldBeSauceMenu() {
+        mainPage.openPage(BaseClient.BASE_URL);
         mainPage.clickSauceButton();
         mainPage.checkSauce();
     }
@@ -125,8 +127,8 @@ public class MainTests extends BaseClient{
     @Test
     @DisplayName("Check Filling button")
     @Description("Should scroll to Filling-menu")
-    public void shouldBeFillingMenu(){
-        mainPage.openPage(BaseURL);
+    public void shouldBeFillingMenu() {
+        mainPage.openPage(BaseClient.BASE_URL);
         mainPage.clickFillingButton();
         mainPage.checkFilling();
     }

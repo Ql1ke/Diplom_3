@@ -1,21 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ru.yandex.praktikum.AuthTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 98.92 s <<< FAILURE! - in ru.yandex.praktikum.AuthTests
-shouldAuthExistUserFromRegistrationPage(ru.yandex.praktikum.AuthTests)  Time elapsed: 63.155 s  <<< ERROR!
-org.openqa.selenium.TimeoutException: 
-timeout: Timed out receiving message from renderer: -0.010
-  (Session info: chrome=105.0.5195.125)
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'mbp-skulik.local', ip: '192.168.0.100', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '12.1', java.version: '11.0.16.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-selenide.url: https://stellarburgers.nomoreparties.site/register
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 105.0.5195.125, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: /var/folders/0c/v4cn1sp9499...}, goog:chromeOptions: {debuggerAddress: localhost:51980}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-selenide.baseUrl: http://localhost:8080
-Session ID: e131feeffa26e7818f34c990ded18cce
-	at ru.yandex.praktikum.AuthTests.shouldAuthExistUserFromRegistrationPage(AuthTests.java:49)
-
-shouldAuthExistUserFromRegistrationPage(ru.yandex.praktikum.AuthTests)  Time elapsed: 63.163 s  <<< ERROR!
-java.net.UnknownHostException: stellarburgers.nomoreparties.site: nodename nor servname provided, or not known
-	at ru.yandex.praktikum.AuthTests.deleteClient(AuthTests.java:40)
-
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 43.593 s - in ru.yandex.praktikum.AuthTests
