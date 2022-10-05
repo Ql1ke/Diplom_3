@@ -18,19 +18,22 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = "//*[text()='Булки']")
     private SelenideElement bunButton;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Булки']")
+    @FindBy(how = How.XPATH, using = "//span[text()='Булки']")
     private SelenideElement bunChecker;
 
     @FindBy(how = How.XPATH, using = "//*[text()='Соусы']")
     private SelenideElement sauceButton;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"root\"]/div/main/section[1]/div[1]/div[2]/span\n")
+    @FindBy(how = How.XPATH, using = "//span[text()='Соусы']")
     private SelenideElement sauceChecker;
+
+
     @FindBy(how = How.XPATH, using = "//*[text()='Начинки']")
     private SelenideElement fillingButton;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"root\"]/div/main/section[1]/div[1]/div[3]/span\n")
+    @FindBy(how = How.XPATH, using = "//span[text()='Начинки']")
     private SelenideElement fillingChecker;
+
 
     @FindBy(how = How.XPATH, using = "//button[text()='Войти в аккаунт']")
     private SelenideElement loginButton;

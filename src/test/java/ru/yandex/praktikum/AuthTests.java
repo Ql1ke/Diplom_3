@@ -26,7 +26,7 @@ public class AuthTests {
 
     @Step("Initialization of test data")
     @Before
-    public void createData() {
+    public void createData(){
         registrationPage = page(RegistrationPage.class);
         authPage = page(AuthPage.class);
         mainPage = Selenide.page(MainPage.class);
@@ -36,7 +36,7 @@ public class AuthTests {
 
     @Step("Deleting test data after tests")
     @After
-    public void deleteData() {
+    public void deleteData(){
         BaseClient.loginClient(registrationCorrectData);
         BaseClient.deleteClient(registrationCorrectData);
         close();
@@ -46,7 +46,7 @@ public class AuthTests {
     @Test
     @DisplayName("Auth user from registration page")
     @Description("Should auth user from registration page")
-    public void shouldAuthExistUserFromRegistrationPage() {
+    public void shouldAuthExistUserFromRegistrationPage(){
         registrationPage.openPage(BaseClient.REGISTRATION_URL);
         registrationPage.clickSignUpButton();
         authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
@@ -59,7 +59,7 @@ public class AuthTests {
     @Test
     @DisplayName("Auth user from main page")
     @Description("Should auth user from main page")
-    public void shouldAuthExistUserFromMainPage() {
+    public void shouldAuthExistUserFromMainPage(){
         mainPage.openPage(BaseClient.BASE_URL);
         mainPage.clickLoginButton();
         authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
@@ -72,7 +72,7 @@ public class AuthTests {
     @Test
     @DisplayName("Auth user from personal account")
     @Description("Should auth user from personal account")
-    public void shouldAuthExistUserFromPersonalAccount() {
+    public void shouldAuthExistUserFromPersonalAccount(){
         mainPage.openPage(BaseClient.BASE_URL);
         mainPage.clickPersonalAccountButton();
         authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
@@ -85,7 +85,7 @@ public class AuthTests {
     @Test
     @DisplayName("Auth user from forgot password page")
     @Description("Should auth user from forgot password page")
-    public void shouldAuthExistUserFromForgotPasswordPage() {
+    public void shouldAuthExistUserFromForgotPasswordPage(){
         authPage.openPage(BaseClient.LOGIN_URL);
         authPage.clickRetrievePasswordButton();
         authPage.clickSignInButton();

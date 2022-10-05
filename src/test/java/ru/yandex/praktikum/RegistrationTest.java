@@ -31,6 +31,7 @@ public class RegistrationTest {
     public void deleteData() {
         BaseClient.loginClient(registrationCorrectData);
         BaseClient.deleteClient(registrationCorrectData);
+        BaseClient.deleteClient(registrationInCorrectData);
         //close();
     }
 

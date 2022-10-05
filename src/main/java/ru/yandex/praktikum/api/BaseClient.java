@@ -1,12 +1,16 @@
 package ru.yandex.praktikum.api;
 
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import ru.yandex.praktikum.model.UserData;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.http.ContentType.JSON;
 
 public class BaseClient {
     public static final String BASE_URL = "https://stellarburgers.nomoreparties.site";
@@ -15,6 +19,7 @@ public class BaseClient {
     public static final String DELETE_CLIENT_API_URL = BASE_URL + "/api/auth/user";
     public static final String CREATE_CLIENT_API_URL = BASE_URL + "/api/auth/register";
     public static final String LOGIN_API_API_URL = BASE_URL + "/api/auth/login";
+
 
     public static final Map<String, String> tokens = new HashMap<>();
 
@@ -29,6 +34,7 @@ public class BaseClient {
                     .delete(DELETE_CLIENT_API_URL);
         }
     }
+
 
     public static Response createClient(UserData userData) {
         Response resp = given()
