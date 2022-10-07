@@ -7,6 +7,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import static com.codeborne.selenide.Condition.enabled;
+
+
 public class MainPage {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"root\"]/div/header/nav/a/p")
@@ -18,22 +21,14 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = "//*[text()='Булки']")
     private SelenideElement bunButton;
 
-    @FindBy(how = How.XPATH, using = "//span[text()='Булки']")
-    private SelenideElement bunChecker;
+    @FindBy(how = How.XPATH, using = "//div[@class='tab_tab_type_current__2BEPc'>span]")
+    private SelenideElement currentSection;
 
     @FindBy(how = How.XPATH, using = "//*[text()='Соусы']")
     private SelenideElement sauceButton;
 
-    @FindBy(how = How.XPATH, using = "//span[text()='Соусы']")
-    private SelenideElement sauceChecker;
-
-
     @FindBy(how = How.XPATH, using = "//*[text()='Начинки']")
     private SelenideElement fillingButton;
-
-    @FindBy(how = How.XPATH, using = "//span[text()='Начинки']")
-    private SelenideElement fillingChecker;
-
 
     @FindBy(how = How.XPATH, using = "//button[text()='Войти в аккаунт']")
     private SelenideElement loginButton;
@@ -69,18 +64,33 @@ public class MainPage {
     }
 
     @Step("Click Bun Button")
-    public void clickBunButton() {
-        bunButton.click();
+    public MainPage clickBunButton() {
+        bunButton.shouldBe(enabled).doubleClick();
+        return this;
+    }
+
+    public boolean isBunActive() {
+        return currentSection.getText().contains("Булки");
     }
 
     @Step("Click Sause Button")
-    public void clickSauceButton() {
-        sauceButton.click();
+    public MainPage clickSauceButton() {
+        sauceButton.shouldBe(enabled).doubleClick();
+        return this;
+    }
+
+    public boolean isSauceActive() {
+        return currentSection.getText().contains("Соусы");
     }
 
     @Step("Click Filling Button")
-    public void clickFillingButton() {
-        fillingButton.click();
+    public MainPage clickFillingButton() {
+        fillingButton.shouldBe(enabled).doubleClick();
+        return this;
+    }
+
+    public boolean isFillingActive() {
+        return currentSection.getText().contains("Начинки");
     }
 
     @Step("Click Login Button")
@@ -113,18 +123,4 @@ public class MainPage {
         loginText.shouldBe(Condition.visible);
     }
 
-    @Step("Verify bun menu")
-    public void checkBun() {
-        bunChecker.shouldBe(Condition.visible);
-    }
-
-    @Step("Verify sauce menu")
-    public void checkSauce() {
-        sauceChecker.shouldBe(Condition.visible);
-    }
-
-    @Step("Verify filling menu")
-    public void checkFilling() {
-        fillingChecker.shouldBe(Condition.visible);
-    }
 }

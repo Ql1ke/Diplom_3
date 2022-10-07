@@ -7,8 +7,19 @@ public class UserData {
     private String name;
     private Boolean success;
     private User user;
+
     private String accessToken;
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
     private String refreshToken;
+
     private String message;
 
     public UserData(String email, String password, String name, Boolean success, User user, String accessToken, String refreshToken, String message) {
@@ -68,13 +79,6 @@ public class UserData {
         return user;
     }
 
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public String getRefreshToken() {
-        return refreshToken;
-    }
 
     public String getMessage() {
         return message;

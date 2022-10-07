@@ -8,13 +8,12 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.yandex.praktikum.api.BaseClient;
+import ru.yandex.praktikum.api.UserClient;
 import ru.yandex.praktikum.model.UserData;
 import ru.yandex.praktikum.pageobjects.AuthPage;
 import ru.yandex.praktikum.pageobjects.MainPage;
 import ru.yandex.praktikum.pageobjects.RegistrationPage;
 
-import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.page;
 
 public class AuthTests {
@@ -23,31 +22,34 @@ public class AuthTests {
     private AuthPage authPage;
     private MainPage mainPage;
     private UserData registrationCorrectData;
+    private UserData responseRegistration;
+    private UserClient client = new UserClient();
 
     @Step("Initialization of test data")
     @Before
-    public void createData(){
+    public void createData() {
         registrationPage = page(RegistrationPage.class);
         authPage = page(AuthPage.class);
         mainPage = Selenide.page(MainPage.class);
         registrationCorrectData = new UserData(RandomStringUtils.randomAlphabetic(10) + "@yandex.ru", RandomStringUtils.randomAlphabetic(10), RandomStringUtils.randomAlphanumeric(10));
-        BaseClient.createClient(registrationCorrectData);
+        responseRegistration = client.createRegistration(registrationCorrectData).then().extract().as(UserData.class);
     }
 
     @Step("Deleting test data after tests")
     @After
-    public void deleteData(){
-        BaseClient.loginClient(registrationCorrectData);
-        BaseClient.deleteClient(registrationCorrectData);
-        close();
+    public void deleteData() {
+        if (responseRegistration.getAccessToken() != null) {
+            String accessToken = responseRegistration.getAccessToken();
+            client.deleteUser(accessToken);
+        }
     }
 
     @Step("User authentication verification")
     @Test
     @DisplayName("Auth user from registration page")
     @Description("Should auth user from registration page")
-    public void shouldAuthExistUserFromRegistrationPage(){
-        registrationPage.openPage(BaseClient.REGISTRATION_URL);
+    public void shouldAuthExistUserFromRegistrationPage() {
+        registrationPage.openPage(UserClient.REGISTRATION_URL);
         registrationPage.clickSignUpButton();
         authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
         authPage.setPasswordInputAlreadyRegisteredUser(registrationCorrectData.getPassword());
@@ -59,8 +61,8 @@ public class AuthTests {
     @Test
     @DisplayName("Auth user from main page")
     @Description("Should auth user from main page")
-    public void shouldAuthExistUserFromMainPage(){
-        mainPage.openPage(BaseClient.BASE_URL);
+    public void shouldAuthExistUserFromMainPage() {
+        mainPage.openPage(UserClient.BASE_URL);
         mainPage.clickLoginButton();
         authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
         authPage.setPasswordInputAlreadyRegisteredUser(registrationCorrectData.getPassword());
@@ -72,8 +74,8 @@ public class AuthTests {
     @Test
     @DisplayName("Auth user from personal account")
     @Description("Should auth user from personal account")
-    public void shouldAuthExistUserFromPersonalAccount(){
-        mainPage.openPage(BaseClient.BASE_URL);
+    public void shouldAuthExistUserFromPersonalAccount() {
+        mainPage.openPage(UserClient.BASE_URL);
         mainPage.clickPersonalAccountButton();
         authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
         authPage.setPasswordInputAlreadyRegisteredUser(registrationCorrectData.getPassword());
@@ -85,8 +87,8 @@ public class AuthTests {
     @Test
     @DisplayName("Auth user from forgot password page")
     @Description("Should auth user from forgot password page")
-    public void shouldAuthExistUserFromForgotPasswordPage(){
-        authPage.openPage(BaseClient.LOGIN_URL);
+    public void shouldAuthExistUserFromForgotPasswordPage() {
+        authPage.openPage(UserClient.LOGIN_URL);
         authPage.clickRetrievePasswordButton();
         authPage.clickSignInButton();
         authPage.setEmailInputAlreadyRegisteredUser(registrationCorrectData.getEmail());
